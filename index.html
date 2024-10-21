@@ -17,23 +17,33 @@
 <script type="text/babel">
   const root = document.getElementById('root');
 
-  const Title = (<h3
-    id='title'
-    onMouseEnter={() => console.log('마우스 엔터')}>
-    들어갈 내용</h3>);
+  const Title = () => {
+    return (<h3
+      id='title'
+      onMouseEnter={() => console.log('마우스 엔터')}>
+      들어갈 내용</h3>)
+  };
 
-  const Button = (
-    <button
-      style={{ backgroundColor: 'tomato' }}
-      onClick={() => console.log('클릭됨')}
-    >
-      클릭
-    </button>
-  );
+  const Button = () => {
+    return (
+      <button
+        style={{ backgroundColor: 'tomato' }}
+        onClick={() => console.log('클릭됨')}
+      >
+        클릭
+      </button>
+    )
+  };
 
-  const container = React.createElement('div', null, [Title, Button])
+  // const container = React.createElement('div', null, [Title, Button])
+  const Container = () => {
+    return (<div>
+      <Title />
+      <Button />
+    </div>)
+  }
 
-  ReactDOM.render(container, root)
+  ReactDOM.render(<Container />, root)
 </script>
 
 </html>
