@@ -1,31 +1,34 @@
 import { useEffect, useState } from 'react';
 
-function Hello() {
-
-
-  // useEffect(function () {
-  //   console.log('안녕~ :)');
-  //   return function () {
-  //     console.log('잘가~ :<');
-  //   }
-  // }, [])
-
-  useEffect(() => {
-    console.log('안녕~ :)');
-    return () => console.log('잘가~ :<')
-  }, [])
-
-  return <h1>안냥~</h1>
-}
-
 function App() {
-  const [showing, setShowing] = useState(false)
-  const onClick = () => setShowing(prev => !prev)
+  const [toDo, setToDo] = useState('');
+  const [toDos, setToDos] = useState([]);
+
+  const onChange = (e) => setToDo(e.target.value);
+  const onSubmit = (e) => {
+    e.preventDefault()
+    if (toDo === '') {
+      return;
+    }
+    setToDo('')
+    setToDos(currentArr => {
+      return [toDo, ...currentArr]
+    })
+  }
+
+  console.log(toDos);
+
 
   return (
     <div className="App">
-      <button onClick={onClick}>{showing ? '숨김' : '보기'}</button>
-      {showing ? <Hello /> : null}
+      <h1>My To Dos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input onChange={onChange} value={toDo} type='text' placeholder='할 일을 작성하세요.' />
+        <button>할 일 추가</button>
+      </form>
+      <ul>
+        {toDos.map((item, idx) => <li key={idx}>{item}</li>)}
+      </ul>
     </div>
   );
 }
