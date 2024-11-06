@@ -1,11 +1,13 @@
+import Detail from './routes/Detail';
 import Home from './routes/Home';
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <Switch>
-      <Route path='/home' element={<Home />} />
-    </Switch>
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/movie/:id' element={<Detail />} />
+    </Routes>
   )
 }
 
